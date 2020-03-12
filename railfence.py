@@ -29,4 +29,14 @@ railfenceMatrix = np.chararray((key, m))
 railfenceMatrix[:] = '-'
 
 # temp - displays matrix
-print(railfenceMatrix)
+# print(railfenceMatrix)
+
+count = 0
+
+for i in range(0, key):
+    for j in range(0, m):
+        if count < n:
+            railfenceMatrix[j][i] = plaintext[count]
+            print(railfenceMatrix)
+            print("Inside if statement")
+            count += 1
