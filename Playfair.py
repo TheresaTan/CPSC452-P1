@@ -5,10 +5,10 @@ alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q',
 playfairMatrix = np.chararray((5, 5))
 
 ################################################
-# Splits text into appropriate pairs
-# @param text - the string to split up
-# @return - the split text arranged into an array
-################################################
+  # Splits text into appropriate pairs
+  # @param text - the string to split up
+  # @return - the split text arranged into an array
+  ################################################
 def splitText(text):
   pair = ""
   splitList = []
@@ -30,11 +30,8 @@ def splitText(text):
     splitList.append(pair)
     pair = ""
   return splitList
-#################################################
-# Class Playfair inherits CipherInterface class
-#################################################
+
 class Playfair(CipherInterface):
-  
   ################################################
   # Sets the key to use 
   # @param key - the key to use 
@@ -57,6 +54,8 @@ class Playfair(CipherInterface):
           tempList.remove('j')
         elif(letter == 'j'):
           tempList.remove('i')
+          # accounts for the i/j space in playfair matrix
+          playfairMatrix[row][col] = 'i'
         col += 1
     for letter in tempList:
       if col > 4:
@@ -66,6 +65,7 @@ class Playfair(CipherInterface):
         tempList.remove('j')
       elif(letter == 'j'):
         tempList.remove('i')
+        playfairMatrix[row][col] = 'i'
       playfairMatrix[row][col] = letter
       col += 1
       
@@ -73,7 +73,6 @@ class Playfair(CipherInterface):
     if playfairMatrix != "":
       return True
     return False
-  
   ################################################
   # Encrypts a plaintext string
   # @param plaintext - the plaintext string 
@@ -90,8 +89,15 @@ class Playfair(CipherInterface):
     splittedText = splitText(plaintext)
     print(splittedText)
     for pair in splittedText:
+      #changes j to i so that it can be found in matrix
+      firstLetter = pair[0]
+      secondLetter = pair[1]
+      if pair[0] == 'j':
+        firstLetter = 'i'
+      elif pair[1] == 'j':
+        secondLetter = 'i'
       while foundFirst == False:
-        if playfairMatrix[firstRow][firstCol].decode() == pair[0]:
+        if playfairMatrix[firstRow][firstCol].decode() == firstLetter:
           foundFirst = True
         elif firstCol < 4:
           firstCol += 1
@@ -99,7 +105,7 @@ class Playfair(CipherInterface):
           firstRow += 1
           firstCol = 0
       while foundSecond == False:
-        if playfairMatrix[secondRow][secondCol].decode() == pair[1]:
+        if playfairMatrix[secondRow][secondCol].decode() == secondLetter:
           foundSecond = True
         elif secondCol < 4:
           secondCol += 1
@@ -215,8 +221,9 @@ class Playfair(CipherInterface):
     
 
 #Example used to check functions
-cipher = Playfair()
-cipher.setKey("occurrence")
-cipherText = cipher.encrypt("helloworld")
-cipher.decrypt(cipherText)
+#cipher = Playfair()
+#cipher.setKey("occurrence")
+#cipherText = cipher.encrypt("helloworld")
+#cipher.decrypt(cipherText)
+
 
