@@ -215,6 +215,19 @@ class Playfair(CipherInterface):
       secondCol = 0
       foundFirst = False
       foundSecond = False
+    #This gives both options of I or J when decrypting a text
+    if 'i' in plainText:
+      tempText = plainText
+      plainText += " OR ("
+      for letter in tempText:
+        if letter == 'i':
+          plainText += 'j'
+        else:
+          plainText += letter
+      plainText += ")"
+    
+    print(plainText)
+
     return plainText
 
   
