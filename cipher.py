@@ -1,6 +1,7 @@
 from CipherInterface import CipherInterface
 from Playfair import Playfair
 from Vigenere import Vigenere
+from railfence import Railfence
 import sys
 
 
@@ -63,7 +64,21 @@ def main(argv):
         outputFile = open(textOutput, "w+")
         outputFile.write(outputText)
         outputFile.close()
-
+    elif cipherName.lower() == "rfc":
+        print("Railfence is chosen")
+        cipher = Railfence()
+        # Set the encryption key
+        cipher.setKey(key)
+        if (encOrDec.lower() == "enc"):
+            # Perform encryption
+            outputText = cipher.encrypt(contents)
+        else:
+            # Perform decryption
+            outputText = cipher.decrypt(contents)
+        # Create and write into output file the outputText
+        outputFile = open(textOutput, "w+")
+        outputFile.write(outputText)
+        outputFile.close()
 
 main(sys.argv)
 
