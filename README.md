@@ -8,7 +8,7 @@ Programming Language:
 Python
 
 How to Execute Program:
-So far on command line just do "python3 cipher.py <CIPHERNAME> <KEY> <ENC/DEC> <INPUTFILE> <OUTPUTFILE>"
+So far on command line just do "python3 cipher.py < CIPHERNAME > < KEY > < ENC/DEC > < INPUTFILE > < OUTPUTFILE >"
 
 ex: python3 cipher.py plf security enc small output
 
