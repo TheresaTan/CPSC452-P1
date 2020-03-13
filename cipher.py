@@ -3,7 +3,7 @@ from Playfair import Playfair
 from Vigenere import Vigenere
 import sys
 #######################################
-# Enact ciphers
+# Main driver to implement all the ciphers
 #######################################
 def main(argv):
   # Create instance of the CipherInterface
