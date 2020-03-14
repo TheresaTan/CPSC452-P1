@@ -1,4 +1,5 @@
-# Christopher Phongsa
+# Christopher Phongsa - Encryption
+# Andrew Lopez - Decryption
 # 3/12/2020
 
 import random
@@ -25,7 +26,6 @@ class RowTransposition(CipherInterface):
     ########################################################
     # Encrypts a plaintext string
     # @param plaintext - plaintext string
-    # @param cipherKey - key to encrypt plaintext
     # @return - encrypted ciphertext key
     ########################################################
     def encrypt(self, plaintext):
@@ -47,7 +47,7 @@ class RowTransposition(CipherInterface):
                 print("")
             for j in range(0, col):
                 print(temp[i][j], end=" ")
-        print("")
+        print("\n")
 
         # enters plaintext into matrix
         for i in range(0, row):
@@ -74,12 +74,13 @@ class RowTransposition(CipherInterface):
             idx = int(cipherKey[i])-1
             # for each row in temp, you will add the value, according to the respective column number
             ciphertext += "".join([row[idx] for row in temp])
-                
+
         print(ciphertext)
+        print("\n")
 
         return ciphertext
     ########################################################
-    # Encrypts a plaintext string
+    # Decrypts a plaintext string
     # @param cipherText - ciphertext string
     # @return - plaintext
     ########################################################
@@ -100,7 +101,7 @@ class RowTransposition(CipherInterface):
                 print("")
             for j in range(0, col):
                 print(temp[i][j], end=" ")
-        print("")
+        print("\n")
 
         # makes matrix with ciphertext inputed
         for x in range(0, col):
@@ -113,8 +114,8 @@ class RowTransposition(CipherInterface):
                 print("")
             for j in range(0, col):
                 print(temp[i][j], end=" ")
-        print("")
-        print("")
+        print("\n")
+ 
 
         #this will create a new matrix with columns reoragnized to key
         decCipher = [[0 for x in range(col)] for y in range(row)]
@@ -128,14 +129,14 @@ class RowTransposition(CipherInterface):
                 print("")
             for j in range(0, col):
                 print(decCipher[i][j], end=" ")
-        print("")
+        print("\n")
 
         #decrypt ciphertext to plaintext
         for i in range(0, row):
             for j in range(0, col):
             # for each row in temp, you will add the value, according to the respective column number
                 decplaintext += decCipher[i][j]
-                
+        
         print(decplaintext)
         
 
