@@ -1,7 +1,7 @@
 from CipherInterface import CipherInterface
 from Playfair import Playfair
 from Vigenere import Vigenere
-from railfence import Railfence
+from Railfence import Railfence
 import sys
 
 
