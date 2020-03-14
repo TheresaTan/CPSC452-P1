@@ -2,6 +2,8 @@ from CipherInterface import CipherInterface
 from Playfair import Playfair
 from Vigenere import Vigenere
 from RowTransposition import RowTransposition
+from Railfence import Railfence
+from Caesar import Caesar
 import sys
 
 
@@ -60,7 +62,7 @@ def main(argv):
         else:
             # Perform decryption
             outputText = cipher.decrypt(contents)
-    elif cipherName.lower() == "row":
+    elif cipherName.lower() == "rts":
         print("Row Transposition is chosen")
         cipher = RowTransposition()
         # Set the encryption key
@@ -75,6 +77,22 @@ def main(argv):
         outputFile = open(textOutput, "w+")
         outputFile.write(outputText)
         outputFile.close()
+    elif cipherName.lower() == "ces":
+        print("Row Transposition is chosen")
+        cipher = RowTransposition()
+        # Set the encryption key
+        cipher.setKey(key)
+        if (encOrDec.lower() == "enc"):
+            # Perform encryption
+            outputText = cipher.encrypt(contents)
+        else:
+            # Perform decryption
+            outputText = cipher.decrypt(contents)
+        # Create and write into output file the outputText
+        outputFile = open(textOutput, "w+")
+        outputFile.write(outputText)
+        outputFile.close()        
+   
 
 
 main(sys.argv)
