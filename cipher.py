@@ -62,6 +62,10 @@ def main(argv):
         else:
             # Perform decryption
             outputText = cipher.decrypt(contents)
+        # Create and write into output file the outputText
+        outputFile = open(textOutput, "w+")
+        outputFile.write(outputText)
+        outputFile.close()
     elif cipherName.lower() == "rfc":
         print("Railfence is chosen")
         cipher = RowTransposition()
