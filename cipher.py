@@ -68,7 +68,7 @@ def main(argv):
         outputFile.close()
     elif cipherName.lower() == "rfc":
         print("Railfence is chosen")
-        cipher = RowTransposition()
+        cipher = Railfence()
         # Set the encryption key
         cipher.setKey(key)
         if (encOrDec.lower() == "enc"):
@@ -98,7 +98,7 @@ def main(argv):
         outputFile.close()
     elif cipherName.lower() == "ces":
         print("Caesar is chosen")
-        cipher = RowTransposition()
+        cipher = Caesar()
         # Set the encryption key
         cipher.setKey(key)
         if (encOrDec.lower() == "enc"):
