@@ -78,10 +78,71 @@ class RowTransposition(CipherInterface):
         print(ciphertext)
 
         return ciphertext
+    ########################################################
+    # Encrypts a plaintext string
+    # @param cipherText - ciphertext string
+    # @return - plaintext
+    ########################################################
+    def decrypt(self,ciphertext):
+        global alphabet 
+        global cipherKey
+        decplaintext = ""
+
+        col = len(cipherKey)
+        row = math.ceil(len(ciphertext)/col)
+
+        temp = [[0 for x in range(col)] for y in range(row)]
+        counter = 0
+
+        # prints out the matrix so you may check for successful initialization
+        for i in range(0, row):
+            if i > 0:
+                print("")
+            for j in range(0, col):
+                print(temp[i][j], end=" ")
+        print("")
+
+        # makes matrix with ciphertext inputed
+        for x in range(0, col):
+            for y in range(0, row):
+                temp[y][x] = ciphertext[counter]
+                counter += 1
+        #check ciphertext was inputed correctly
+        for i in range(0, row):
+            if i > 0:
+                print("")
+            for j in range(0, col):
+                print(temp[i][j], end=" ")
+        print("")
+        print("")
+
+        #this will create a new matrix with columns reoragnized to key
+        decCipher = [[0 for x in range(col)] for y in range(row)]
+        for x in range(0, col):
+            for y in range(0, row):
+                decCipher[y][int(cipherKey[x])-1] = temp[y][x]
+
+        #prints new matrix for check
+        for i in range(0, row):
+            if i > 0:
+                print("")
+            for j in range(0, col):
+                print(decCipher[i][j], end=" ")
+        print("")
+
+        #decrypt ciphertext to plaintext
+        for i in range(0, row):
+            for j in range(0, col):
+            # for each row in temp, you will add the value, according to the respective column number
+                decplaintext += decCipher[i][j]
+                
+        print(decplaintext)
+        
 
 # Examples to check functions
 cipher = RowTransposition()
 cipher.setKey("3124")
-ciphertext = cipher.encrypt("thisisatest")
+cipherText = cipher.encrypt("thisisatest")
+cipher.decrypt(cipherText)
 
     
