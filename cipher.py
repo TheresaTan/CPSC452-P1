@@ -78,7 +78,7 @@ def main(argv):
         outputFile.write(outputText)
         outputFile.close()
     elif cipherName.lower() == "ces":
-        print("Row Transposition is chosen")
+        print("Caesar is chosen")
         cipher = RowTransposition()
         # Set the encryption key
         cipher.setKey(key)
