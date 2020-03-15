@@ -54,11 +54,14 @@ class Railfence(CipherInterface):
         #print("DECRYPT FUNCTION")
         plaintext = ""
         col = int(len(ciphertext) / cipherKey)
-        tempText = ciphertext
-
+        temptext = ciphertext
         leftOverLetters = int(len(ciphertext) % cipherKey)
         print("LEFTOVERLETTERS:")
         print(leftOverLetters)
+        print("ROW:", end='')
+        print(cipherKey)
+        print("COL:", end='')
+        print(col)
         if leftOverLetters > 0:
             col += 1
         fromNum = 0
@@ -73,7 +76,7 @@ class Railfence(CipherInterface):
           #print(tempText[:col])
           
           if leftOverLetters > 0:
-            decryptText = tempText[fromNum:toNum]
+            decryptText = temptext[fromNum:toNum]
             leftOverLetters -= 1
             #print("DECRYPT TEXT")
             #print(decryptText)
@@ -86,22 +89,26 @@ class Railfence(CipherInterface):
             rowCounter += 1
             colCounter = 0
           else:
-            decryptText = ciphertext[fromNum:toNum - 1]
+            decryptText = temptext[fromNum:toNum - 1]
             #print(decryptText)
-            #print("DECRYPT TEXT")
-            #print(decryptText)
+            print("DECRYPT TEXT")
+            print(decryptText)
             for letter in decryptText:
               decryptList[rowCounter][colCounter] = letter
               colCounter += 1
+            # a check to make sure letters aren't skipped if there are leftover letters
+            if int(len(ciphertext) % cipherKey):
+              fromNum -= 1
+
             fromNum += col
-            toNum += col
+            toNum += col-1
             #print("New text")
             #print(tempText)
             rowCounter += 1
             colCounter = 0
 
 
-        #print(decryptList)
+        print(decryptList)
         rowCounter = 0
         colCounter = 0
         # go through each column and add it to the plaintext
@@ -123,3 +130,4 @@ class Railfence(CipherInterface):
 #cipher.setKey(7)
 #cipherText = cipher.encrypt("meetmeafterthetogaparty")
 #plainText = cipher.decrypt(cipherText)
+
