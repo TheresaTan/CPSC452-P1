@@ -21,11 +21,11 @@ def main(argv):
         encOrDec = argv[3]
         textInput = argv[4] + ".txt"
         textOutput = argv[5] + ".txt"
-        #print(cipherName)
-        #print(key)
-        #print(encOrDec)
-        #print(textInput)
-        #print(textOutput)
+        # print(cipherName)
+        # print(key)
+        # print(encOrDec)
+        # print(textInput)
+        # print(textOutput)
 
     # Open inputfile to read contents
     # assign contents to variable to encrypt/decrypt
@@ -39,82 +39,39 @@ def main(argv):
     if cipherName.lower() == "plf":
         print("Playfair is chosen")
         cipher = Playfair()
-        # Set the encryption key
-        cipher.setKey(key)
-        if (encOrDec.lower() == "enc"):
-            # Perform encryption
-            outputText = cipher.encrypt(contents)
-        else:
-            # Perform decryption
-            outputText = cipher.decrypt(contents)
-        # Create and write into output file the outputText
-        outputFile = open(textOutput, "w+")
-        outputFile.write(outputText)
-        outputFile.close()
+
     elif cipherName.lower() == "vig":
         print("Vigenere is chosen")
         cipher = Vigenere()
-        # Set the encryption key
-        cipher.setKey(key)
-        if (encOrDec.lower() == "enc"):
-            # Perform encryption
-            outputText = cipher.encrypt(contents)
-        else:
-            # Perform decryption
-            outputText = cipher.decrypt(contents)
-        # Create and write into output file the outputText
-        outputFile = open(textOutput, "w+")
-        outputFile.write(outputText)
-        outputFile.close()
+
     elif cipherName.lower() == "rfc":
         print("Railfence is chosen")
         cipher = Railfence()
-        # Set the encryption key
-        cipher.setKey(key)
-        if (encOrDec.lower() == "enc"):
-            # Perform encryption
-            outputText = cipher.encrypt(contents)
-        else:
-            # Perform decryption
-            outputText = cipher.decrypt(contents)
-        # Create and write into output file the outputText
-        outputFile = open(textOutput, "w+")
-        outputFile.write(outputText)
-        outputFile.close()
+
     elif cipherName.lower() == "rts":
         print("Row Transposition is chosen")
         cipher = RowTransposition()
-        # Set the encryption key
-        cipher.setKey(key)
-        if (encOrDec.lower() == "enc"):
-            # Perform encryption
-            outputText = cipher.encrypt(contents)
-        else:
-            # Perform decryption
-            outputText = cipher.decrypt(contents)
-        # Create and write into output file the outputText
-        outputFile = open(textOutput, "w+")
-        outputFile.write(outputText)
-        outputFile.close()
+
     elif cipherName.lower() == "ces":
         print("Caesar is chosen")
         cipher = Caesar()
-        # Set the encryption key
-        cipher.setKey(key)
-        if (encOrDec.lower() == "enc"):
-            # Perform encryption
-            outputText = cipher.encrypt(contents)
-        else:
-            # Perform decryption
-            outputText = cipher.decrypt(contents)
-        # Create and write into output file the outputText
-        outputFile = open(textOutput, "w+")
-        outputFile.write(outputText)
-        outputFile.close()        
-   
+        
+    # Set the encryption key
+    cipher.setKey(key)
+    if (encOrDec.lower() == "enc"):
+        # Perform encryption
+        outputText = cipher.encrypt(contents)
+    else:
+        # Perform decryption
+        outputText = cipher.decrypt(contents)
+    # Create and write into output file the outputText
+    outputFile = open(textOutput, "w+")
+    outputFile.write(outputText)
+    outputFile.close()
 
 
 main(sys.argv)
+
 
 
 
