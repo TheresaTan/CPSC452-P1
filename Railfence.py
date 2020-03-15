@@ -99,9 +99,10 @@ class Railfence(CipherInterface):
             # a check to make sure letters aren't skipped if there are leftover letters
             if int(len(ciphertext) % cipherKey):
               fromNum -= 1
+              toNum -= 1
 
             fromNum += col
-            toNum += col-1
+            toNum += col
             #print("New text")
             #print(tempText)
             rowCounter += 1
@@ -130,4 +131,3 @@ class Railfence(CipherInterface):
 #cipher.setKey(7)
 #cipherText = cipher.encrypt("meetmeafterthetogaparty")
 #plainText = cipher.decrypt(cipherText)
-
