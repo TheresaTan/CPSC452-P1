@@ -70,14 +70,21 @@ class Railfence(CipherInterface):
                 decryptList[rowCounter][colCounter] = ciphertext[x]
                 colCounter = 0
                 rowCounter += 1
-                #print(decryptList)
+                print(decryptList)
+            # If there were never any left over letters and you reach end of the matrix
+            elif int(len(ciphertext) / cipherKey) and colCounter % (col - 1) == 0 and colCounter > 0:
+                decryptList[rowCounter][colCounter] = ciphertext[x]
+                colCounter = 0
+                rowCounter += 1
+                print(decryptList)
             # If there are no more left over letters so you skip the last entry of that list
             elif colCounter % (col - 1) == 0 and colCounter > 0:
                 colCounter = 0
                 rowCounter += 1
                 decryptList[rowCounter][colCounter] = ciphertext[x]
                 colCounter += 1
-                #print(decryptList)
+                print(decryptList)
+            
             # regular list entries
             else:
                 decryptList[rowCounter][colCounter] = ciphertext[x]
@@ -103,3 +110,4 @@ class Railfence(CipherInterface):
 #cipher.setKey(7)
 #cipherText = cipher.encrypt("meetmeafterthetogaparty")
 #plainText = cipher.decrypt(cipherText)
+
