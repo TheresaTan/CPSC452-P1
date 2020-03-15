@@ -13,7 +13,7 @@ class Railfence(CipherInterface):
     ##########################################
     def setKey(self, key):
         global cipherKey
-        cipherKey = key
+        cipherKey = int(key)
         if cipherKey != 0:
             return True
         return False
