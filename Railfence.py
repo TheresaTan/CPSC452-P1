@@ -91,8 +91,8 @@ class Railfence(CipherInterface):
           else:
             decryptText = temptext[fromNum:toNum - 1]
             #print(decryptText)
-            print("DECRYPT TEXT")
-            print(decryptText)
+            #print("DECRYPT TEXT")
+            #print(decryptText)
             for letter in decryptText:
               decryptList[rowCounter][colCounter] = letter
               colCounter += 1
