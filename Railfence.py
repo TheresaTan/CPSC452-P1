@@ -54,43 +54,54 @@ class Railfence(CipherInterface):
         #print("DECRYPT FUNCTION")
         plaintext = ""
         col = int(len(ciphertext) / cipherKey)
+        tempText = ciphertext
+
         leftOverLetters = int(len(ciphertext) % cipherKey)
+        print("LEFTOVERLETTERS:")
+        print(leftOverLetters)
         if leftOverLetters > 0:
             col += 1
-
+        fromNum = 0
+        toNum = col
         decryptList = np.chararray((cipherKey, col))
         decryptList[:] = '-'
         rowCounter = 0
         colCounter = 0
         # put ciphertext in matrix format
-        for x in range(0, len(ciphertext)):
-            # If there are left over letters and you reach end of the matrix
-            if leftOverLetters > 0 and colCounter % (col - 1) == 0 and colCounter > 0:
-                leftOverLetters -= 1
-                decryptList[rowCounter][colCounter] = ciphertext[x]
-                colCounter = 0
-                rowCounter += 1
-                print(decryptList)
-            # If there were never any left over letters and you reach end of the matrix
-            elif int(len(ciphertext) / cipherKey) and colCounter % (col - 1) == 0 and colCounter > 0:
-                decryptList[rowCounter][colCounter] = ciphertext[x]
-                colCounter = 0
-                rowCounter += 1
-                print(decryptList)
-            # If there are no more left over letters so you skip the last entry of that list
-            elif colCounter % (col - 1) == 0 and colCounter > 0:
-                colCounter = 0
-                rowCounter += 1
-                decryptList[rowCounter][colCounter] = ciphertext[x]
-                colCounter += 1
-                print(decryptList)
-            
-            # regular list entries
-            else:
-                decryptList[rowCounter][colCounter] = ciphertext[x]
-                colCounter += 1
+        for x in range(0, cipherKey):
+          #print("TEMPTEXT")
+          #print(tempText[:col])
+          
+          if leftOverLetters > 0:
+            decryptText = tempText[fromNum:toNum]
+            leftOverLetters -= 1
+            #print("DECRYPT TEXT")
+            #print(decryptText)
+            for letter in decryptText:
+              decryptList[rowCounter][colCounter] = letter
+              colCounter += 1
+            fromNum += col
+            toNum += col
 
-        print(decryptList)
+            rowCounter += 1
+            colCounter = 0
+          else:
+            decryptText = ciphertext[fromNum:toNum - 1]
+            #print(decryptText)
+            #print("DECRYPT TEXT")
+            #print(decryptText)
+            for letter in decryptText:
+              decryptList[rowCounter][colCounter] = letter
+              colCounter += 1
+            fromNum += col
+            toNum += col
+            #print("New text")
+            #print(tempText)
+            rowCounter += 1
+            colCounter = 0
+
+
+        #print(decryptList)
         rowCounter = 0
         colCounter = 0
         # go through each column and add it to the plaintext
@@ -99,9 +110,11 @@ class Railfence(CipherInterface):
             if rowCounter % cipherKey == 0 and rowCounter > 0:
                 colCounter += 1
                 rowCounter = 0
-            plaintext += decryptList[rowCounter][colCounter].decode()
+            if decryptList[rowCounter][colCounter].decode() != '-':
+              plaintext += decryptList[rowCounter][colCounter].decode()
             rowCounter += 1
             #print(plaintext)
+        #print("PLAINTEXT")
         print(plaintext)
         return plaintext
 
@@ -110,4 +123,3 @@ class Railfence(CipherInterface):
 #cipher.setKey(7)
 #cipherText = cipher.encrypt("meetmeafterthetogaparty")
 #plainText = cipher.decrypt(cipherText)
-
